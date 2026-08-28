@@ -20,20 +20,6 @@ layout: default
       {% endunless %}
     {% endif %}
   {% endfor %}
-
-  <!-- Síðan finna vit aðrar fílur (t.d. PDF, myndir osfr.) -->
-  {% for file in site.static_files %}
-    {% assign file_parts = file.path | split: "/" %}
-    {% if file_parts[1] == current_folder %}
-      {% assign file_name = file_parts | last %}
-      {% assign file_ext = file_parts | last | split: "." | last %}
-      {% unless file_ext == "md" or file_name == "index.html" %}
-        <li>
-          <a href="{{ site.baseurl }}{{ file.path }}">{{ file_name }} ({{ file_ext | upcase }})</a>
-        </li>
-      {% endunless %}
-    {% endif %}
-  {% endfor %}
 </ul>
 
 [← Aftur til forsíðuna]({{ site.baseurl }}/)
