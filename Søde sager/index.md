@@ -1,6 +1,6 @@
 ---
-layout: default
----
+
+## layout: default
 
 {% assign current_path = page.path | split: "/" %}
 {% assign current_folder = current_path[0] %}
@@ -8,32 +8,23 @@ layout: default
 ### Files in {{ current_folder | replace: "-", " " | capitalize }}
 
 <ul>
-  <!-- Fyrst finna vit vanligar síður (t.d. .md fílur sum verða til HTML) -->
   {% for p in site.pages %}
     {% assign page_parts = p.path | split: "/" %}
-    {% if page_parts[0] == current_folder %}
-      {% assign page_name = page_parts | last %}
-      {% unless page_name == "index.md" or page_name == "index.html" %}
-        <li>
-          <a href="{{ p.url | relative_url }}">{{ p.title | default: page_name }}</a>
-        </li>
-      {% endunless %}
-    {% endif %}
-  {% endfor %}
+    {% assign page_name = page_parts | last %}
 
-  <!-- Síðan finna vit aðrar fílur (t.d. PDF, myndir osfr.) -->
-  {% for file in site.static_files %}
-    {% assign file_parts = file.path | split: "/" %}
-    {% if file_parts[1] == current_folder %}
-      {% assign file_name = file_parts | last %}
-      {% assign file_ext = file_parts | last | split: "." | last %}
-      {% unless file_ext == "md" or file_name == "index.html" %}
-        <li>
-          <a href="{{ site.baseurl }}{{ file.path }}">{{ file_name }} ({{ file_ext | upcase }})</a>
-        </li>
-      {% endunless %}
-    {% endif %}
-  {% endfor %}
+```
+{% if page_parts[0] == current_folder and page_name contains ".md" %}
+  {% unless page_name == "index.md" %}
+    {% assign display_name = page_name | remove: ".md" | replace: "-", " " | capitalize %}
+    <li>
+      <a href="{{ p.url | relative_url }}">{{ p.title | default: display_name }}</a>
+    </li>
+  {% endunless %}
+{% endif %}
+```
+
+{% endfor %}
+
 </ul>
 
 [← Aftur til forsíðuna]({{ site.baseurl }}/)
