@@ -1,8 +1,3 @@
----
-layout: default
-title: Gulerodsboller
----
-
 **Ingredienser**
 - 1 pk. gær
 - 350 gr. lunkent vand
