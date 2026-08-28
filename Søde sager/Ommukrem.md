@@ -9,4 +9,4 @@
 1. Pisk smør og olie jævnt og luftigt.
 2. Tilsæt resten af ingredienserne og pisk godt sammen.
 
-![[./Ommukrem.jpg]]
+![](./Ommukrem.jpg)
